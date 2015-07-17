@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6f4cfd1589f8454cbca09b387b83ac2c" Name="Diagram1" ZoomLevel="95" >
+        <EntityTypeShape EntityType="LabEntity.Fly" Width="1.5" PointX="2.875" PointY="1.5" />
+        <EntityTypeShape EntityType="LabEntity.Trait" Width="1.5" PointX="5.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabEntity.Gender" Width="1.5" PointX="0.5" PointY="1.125" />
+        <AssociationConnector Association="LabEntity.GenderFly" />
+        <EntityTypeShape EntityType="LabEntity.Module" Width="1.5" PointX="0.5" PointY="3.125" />
+        <AssociationConnector Association="LabEntity.ModuleFly" />
+        <EntityTypeShape EntityType="LabEntity.Category" Width="1.5" PointX="7.25" PointY="0.875" />
+        <AssociationConnector Association="LabEntity.CategoryTrait" />
+        <AssociationConnector Association="LabEntity.FlyTrait" />
+        <EntityTypeShape EntityType="LabEntity.LabUser" Width="1.5" PointX="5.125" PointY="4.625" />
+        <EntityTypeShape EntityType="LabEntity.UseInstance" Width="1.5" PointX="2.875" PointY="4.625" />
+        <AssociationConnector Association="LabEntity.LabUserUseInstance" />
+        <AssociationConnector Association="LabEntity.UseInstanceModule" />
+        <AssociationConnector Association="LabEntity.UseInstanceFly" />
+        <EntityTypeShape EntityType="LabEntity.ImageSettings" Width="1.5" PointX="7.25" PointY="4.625" />
+        <AssociationConnector Association="LabEntity.TraitTrait" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

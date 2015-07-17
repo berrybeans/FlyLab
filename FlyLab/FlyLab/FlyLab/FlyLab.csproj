@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{10FFAF8C-A59C-4548-AAFA-4C00D05A08DA}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FlyLab</RootNamespace>
+    <AssemblyName>FlyLab</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="CWSToolkit">
+      <HintPath>..\..\..\..\_CWS\CWSToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc">
+      <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LabController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\CrossTrait.cs" />
+    <Compile Include="Models\ImageSettings.cs">
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LabAreaViewModel.cs" />
+    <Compile Include="Models\LabUser.cs">
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LabUserViewModel.cs" />
+    <Compile Include="Models\ReducedTraitModel.cs" />
+    <Compile Include="Models\FlyViewModel.cs" />
+    <Compile Include="Models\LabMetadata.cs" />
+    <Compile Include="Models\Fly.cs">
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gender.cs">
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LabEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LabEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LabEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Module.cs">
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Trait.cs">
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UseInstance.cs">
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="Assets\Imgs\404notfound.gif" />
+    <Content Include="Assets\Imgs\403forbidden.jpg" />
+    <Content Include="Assets\Imgs\500internal.gif" />
+    <Content Include="Assets\Imgs\basedfly.png" />
+    <Content Include="Assets\Imgs\cumberfly.png" />
+    <Content Include="Assets\Imgs\cumberfly2.png" />
+    <Content Include="Assets\Imgs\loading.gif" />
+    <Content Include="Assets\jquery-ui-1.11.1\external\jquery\jquery.js" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-icons_222222_256x240.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Assets\jquery-ui-1.11.1\index.html" />
+    <Content Include="Assets\jquery-ui-1.11.1\jquery-ui.css" />
+    <Content Include="Assets\jquery-ui-1.11.1\jquery-ui.js" />
+    <Content Include="Assets\jquery-ui-1.11.1\jquery-ui.min.css" />
+    <Content Include="Assets\jquery-ui-1.11.1\jquery-ui.min.js" />
+    <Content Include="Assets\jquery-ui-1.11.1\jquery-ui.structure.css" />
+    <Content Include="Assets\jquery-ui-1.11.1\jquery-ui.structure.min.css" />
+    <Content Include="Assets\jquery-ui-1.11.1\jquery-ui.theme.css" />
+    <Content Include="Assets\jquery-ui-1.11.1\jquery-ui.theme.min.css" />
+    <Content Include="Assets\Parts\bcBlack.png" />
+    <Content Include="Assets\Parts\bcEbony.png" />
+    <Content Include="Assets\Parts\bcPlatinum.png" />
+    <Content Include="Assets\Parts\bcSable.png" />
+    <Content Include="Assets\Parts\bcTan.png" />
+    <Content Include="Assets\Parts\bcWild.png" />
+    <Content Include="Assets\Parts\bcYellow.png" />
+    <Content Include="Assets\Parts\brFine.png" />
+    <Content Include="Assets\Parts\brForked.png" />
+    <Content Include="Assets\Parts\brShaven.png" />
+    <Content Include="Assets\Parts\brSinged.png" />
+    <Content Include="Assets\Parts\brSpineless.png" />
+    <Content Include="Assets\Parts\brSternopleural.png" />
+    <Content Include="Assets\Parts\brStiff.png" />
+    <Content Include="Assets\Parts\brStubble.png" />
+    <Content Include="Assets\Parts\brWild.png" />
+    <Content Include="Assets\Parts\eyeBarBrown.png" />
+    <Content Include="Assets\Parts\eyeBarCinnabar.png" />
+    <Content Include="Assets\Parts\eyeBarLightCinnabar.png" />
+    <Content Include="Assets\Parts\eyeBarPurple.png" />
+    <Content Include="Assets\Parts\eyeBarScarlet.png" />
+    <Content Include="Assets\Parts\eyeBarSepia.png" />
+    <Content Include="Assets\Parts\eyeBarWhite.png" />
+    <Content Include="Assets\Parts\eyeBarWild.png" />
+    <Content Include="Assets\Parts\eyeEyelessBrown.png" />
+    <Content Include="Assets\Parts\eyeEyelessCinnabar.png" />
+    <Content Include="Assets\Parts\eyeEyelessLightCinnabar.png" />
+    <Content Include="Assets\Parts\eyeEyelessPurple.png" />
+    <Content Include="Assets\Parts\eyeEyelessScarlet.png" />
+    <Content Include="Assets\Parts\eyeEyelessSepia.png" />
+    <Content Include="Assets\Parts\eyeEyelessWhite.png" />
+    <Content Include="Assets\Parts\eyeEyelessWild.png" />
+    <Content Include="Assets\Parts\eyeEyelufBrown.png" />
+    <Content Include="Assets\Parts\eyeEyelufCinnabar.png" />
+    <Content Include="Assets\Parts\eyeEyelufLightCinnabar.png" />
+    <Content Include="Assets\Parts\eyeEyelufPurple.png" />
+    <Content Include="Assets\Parts\eyeEyelufScarlet.png" />
+    <Content Include="Assets\Parts\eyeEyelufSepia.png" />
+    <Content Include="Assets\Parts\eyeEyelufWhite.png" />
+    <Content Include="Assets\Parts\eyeEyelufWild.png" />
+    <Content Include="Assets\Parts\eyeGlistenBrown.png" />
+    <Content Include="Assets\Parts\eyeGlistenCinnabar.png" />
+    <Content Include="Assets\Parts\eyeGlistenLightCinnabar.png" />
+    <Content Include="Assets\Parts\eyeGlistenPurple.png" />
+    <Content Include="Assets\Parts\eyeGlistenScarlet.png" />
+    <Content Include="Assets\Parts\eyeGlistenSepia.png" />
+    <Content Include="Assets\Parts\eyeGlistenWhite.png" />
+    <Content Include="Assets\Parts\eyeGlistenWild.png" />
+    <Content Include="Assets\Parts\eyeLobeBrown.png" />
+    <Content Include="Assets\Parts\eyeLobeCinnabar.png" />
+    <Content Include="Assets\Parts\eyeLobeLightCinnabar.png" />
+    <Content Include="Assets\Parts\eyeLobePurple.png" />
+    <Content Include="Assets\Parts\eyeLobeScarlet.png" />
+    <Content Include="Assets\Parts\eyeLobeSepia.png" />
+    <Content Include="Assets\Parts\eyeLobeWhite.png" />
+    <Content Include="Assets\Parts\eyeLobeWild.png" />
+    <Content Include="Assets\Parts\eyeWildBrown.png" />
+    <Content Include="Assets\Parts\eyeWildCinnabar.png" />
+    <Content Include="Assets\Parts\eyeWildLightCinnabar.png" />
+    <Content Include="Assets\Parts\eyeWildPurple.png" />
+    <Content Include="Assets\Parts\eyeWildScarlet.png" />
+    <Content Include="Assets\Parts\eyeWildSepia.png" />
+    <Content Include="Assets\Parts\eyeWildWhite.png" />
+    <Content Include="Assets\Parts\eyeWildWild.png" />
+    <Content Include="Assets\Parts\new.png" />
+    <Content Include="Assets\Parts\sexFemale.png" />
+    <Content Include="Assets\Parts\sexMale.png" />
+    <Content Include="Assets\Parts\wingDichaeteCrumpled.png" />
+    <Content Include="Assets\Parts\wingDichaeteCurled.png" />
+    <Content Include="Assets\Parts\wingDichaeteCurved.png" />
+    <Content Include="Assets\Parts\wingDichaeteDumpy.png" />
+    <Content Include="Assets\Parts\wingDichaeteScalloped.png" />
+    <Content Include="Assets\Parts\wingDichaeteStubby.png" />
+    <Content Include="Assets\Parts\wingDichaeteWild.png" />
+    <Content Include="Assets\Parts\wingWildCrumpled.png" />
+    <Content Include="Assets\Parts\wingWildCurled.png" />
+    <Content Include="Assets\Parts\wingWildCurved.png" />
+    <Content Include="Assets\Parts\wingWildDumpy.png" />
+    <Content Include="Assets\Parts\wingWildScalloped.png" />
+    <Content Include="Assets\Parts\wingWildStubby.png" />
+    <Content Include="Assets\Parts\wingWildWild.png" />
+    <Content Include="Content\alertify\alertify.bootstrap.css" />
+    <Content Include="Content\alertify\alertify.core.css" />
+    <Content Include="Content\alertify\alertify.default.css" />
+    <Content Include="Content\Styles\lab.css" />
+    <Content Include="Content\Styles\spinner.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\LabEntity.edmx.sql" />
+    <Content Include="Scripts\alertify\alertify.js" />
+    <Content Include="Scripts\alertify\alertify.min.js" />
+    <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\eastereggs\konami.js" />
+    <Content Include="Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\labKnockout.js" />
+    <Content Include="Scripts\Objects\Category.js" />
+    <Content Include="Scripts\Objects\Fly.js" />
+    <Content Include="Scripts\Utilities\arrayUtils.js" />
+    <Content Include="Scripts\Utilities\cookies.js" />
+    <Content Include="Scripts\Utilities\math.min.js" />
+    <Content Include="Scripts\Utilities\script_load.js" />
+    <Content Include="Scripts\Utilities\underscore-min.js" />
+    <Content Include="Scripts\ViewModels\LabViewModel.js" />
+    <Content Include="Scripts\Objects\Trait.js" />
+    <Content Include="Scripts\user.js" />
+    <Content Include="Views\Admin\Categories.aspx" />
+    <Content Include="Views\Admin\Create.aspx" />
+    <Content Include="Views\Admin\CreateCat.aspx" />
+    <Content Include="Views\Admin\CreateGender.aspx" />
+    <Content Include="Views\Admin\CreateImg.aspx" />
+    <Content Include="Views\Admin\Delete.aspx" />
+    <Content Include="Views\Admin\DeleteCat.aspx" />
+    <Content Include="Views\Admin\DeleteGender.aspx" />
+    <Content Include="Views\Admin\FullUserInfo.aspx" />
+    <Content Include="Views\Admin\Genders.aspx" />
+    <Content Include="Views\Admin\Images.aspx" />
+    <Content Include="Views\Admin\Index.aspx" />
+    <Content Include="Views\Admin\Modules.aspx" />
+    <Content Include="Views\Admin\Traits.aspx" />
+    <Content Include="Views\Lab\NewLab.aspx" />
+    <Content Include="Views\Shared\_F1Children.ascx" />
+    <Content Include="Views\Shared\_FullInfo.ascx" />
+    <Content Include="Views\Error\InternalError.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Error\NotFound.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Error\Unauthorized.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Lab\Index.aspx" />
+    <Content Include="Views\Shared\_AdminSidebar.ascx" />
+    <Content Include="Views\Shared\_Filtered.ascx" />
+    <Content Include="Views\Shared\_ModuleInfo.ascx" />
+    <Content Include="Views\Shared\_NavBar.ascx" />
+    <Content Include="Views\Shared\_SessionInfo.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Nested.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\LabEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LabEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\LabEntity.edmx.diagram">
+      <DependentUpon>LabEntity.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\LabEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LabEntity.Context.cs</LastGenOutput>
+      <DependentUpon>LabEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\LabEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LabEntity.cs</LastGenOutput>
+      <DependentUpon>LabEntity.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\dev.pubxml" />
+    <None Include="Properties\PublishProfiles\migr.pubxml" />
+    <None Include="Properties\PublishProfiles\test.pubxml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

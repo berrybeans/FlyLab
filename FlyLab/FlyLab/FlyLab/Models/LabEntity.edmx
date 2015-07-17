@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LabEntity.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fly">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="UseInstanceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FlyTrait">
+          <Key>
+            <PropertyRef Name="Flies_Id" />
+            <PropertyRef Name="Traits_Id" />
+          </Key>
+          <Property Name="Flies_Id" Type="int" Nullable="false" />
+          <Property Name="Traits_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImageSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prefix" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FirstCat" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SecCat" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Suffix" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LabUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Call_id" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trait">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="IsDominant" Type="bit" Nullable="false" />
+          <Property Name="IsIncompleteDominant" Type="bit" Nullable="false" />
+          <Property Name="IsLethal" Type="bit" Nullable="false" />
+          <Property Name="ChromosomeNumber" Type="tinyint" Nullable="false" />
+          <Property Name="Distance" Type="float" Nullable="false" />
+          <Property Name="IsHeterozygous" Type="bit" />
+          <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Father_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="UseInstance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="LabUserId" Type="int" Nullable="false" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="Stage" Type="varchar" MaxLength="50" />
+          <Property Name="Browser" Type="varchar" MaxLength="50" />
+          <Property Name="OS" Type="varchar" MaxLength="50" />
+          <Property Name="IP" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <Association Name="FK_CategoryTrait">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Trait" Type="Self.Trait" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trait">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyTrait_Fly">
+          <End Role="Fly" Type="Self.Fly" Multiplicity="1" />
+          <End Role="FlyTrait" Type="Self.FlyTrait" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fly">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyTrait">
+              <PropertyRef Name="Flies_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlyTrait_Trait">
+          <End Role="Trait" Type="Self.Trait" Multiplicity="1" />
+          <End Role="FlyTrait" Type="Self.FlyTrait" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trait">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlyTrait">
+              <PropertyRef Name="Traits_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenderFly">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Fly" Type="Self.Fly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fly">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabUserUseInstance">
+          <End Role="LabUser" Type="Self.LabUser" Multiplicity="1" />
+          <End Role="UseInstance" Type="Self.UseInstance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UseInstance">
+              <PropertyRef Name="LabUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleFly">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="Fly" Type="Self.Fly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fly">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TraitTrait">
+          <End Role="Trait" Type="Self.Trait" Multiplicity="0..1" />
+          <End Role="Trait1" Type="Self.Trait" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trait">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trait1">
+              <PropertyRef Name="Father_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UseInstanceFly">
+          <End Role="UseInstance" Type="Self.UseInstance" Multiplicity="1" />
+          <End Role="Fly" Type="Self.Fly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UseInstance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fly">
+              <PropertyRef Name="UseInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UseInstanceModule">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="UseInstance" Type="Self.UseInstance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UseInstance">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LabEntityStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fly" EntityType="Self.Fly" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlyTrait" EntityType="Self.FlyTrait" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageSettings" EntityType="Self.ImageSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LabUser" EntityType="Self.LabUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trait" EntityType="Self.Trait" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UseInstance" EntityType="Self.UseInstance" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoryTrait" Association="Self.FK_CategoryTrait">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Trait" EntitySet="Trait" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyTrait_Fly" Association="Self.FK_FlyTrait_Fly">
+            <End Role="Fly" EntitySet="Fly" />
+            <End Role="FlyTrait" EntitySet="FlyTrait" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlyTrait_Trait" Association="Self.FK_FlyTrait_Trait">
+            <End Role="Trait" EntitySet="Trait" />
+            <End Role="FlyTrait" EntitySet="FlyTrait" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenderFly" Association="Self.FK_GenderFly">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Fly" EntitySet="Fly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabUserUseInstance" Association="Self.FK_LabUserUseInstance">
+            <End Role="LabUser" EntitySet="LabUser" />
+            <End Role="UseInstance" EntitySet="UseInstance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleFly" Association="Self.FK_ModuleFly">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Fly" EntitySet="Fly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TraitTrait" Association="Self.FK_TraitTrait">
+            <End Role="Trait" EntitySet="Trait" />
+            <End Role="Trait1" EntitySet="Trait" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UseInstanceFly" Association="Self.FK_UseInstanceFly">
+            <End Role="UseInstance" EntitySet="UseInstance" />
+            <End Role="Fly" EntitySet="Fly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UseInstanceModule" Association="Self.FK_UseInstanceModule">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="UseInstance" EntitySet="UseInstance" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="LabEntity" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="LabEntityContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fly" EntityType="LabEntity.Fly" />
+          <EntitySet Name="Trait" EntityType="LabEntity.Trait" />
+          <EntitySet Name="Gender" EntityType="LabEntity.Gender" />
+          <AssociationSet Name="GenderFly" Association="LabEntity.GenderFly">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Fly" EntitySet="Fly" />
+          </AssociationSet>
+          <EntitySet Name="Module" EntityType="LabEntity.Module" />
+          <AssociationSet Name="ModuleFly" Association="LabEntity.ModuleFly">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Fly" EntitySet="Fly" />
+          </AssociationSet>
+          <EntitySet Name="Category" EntityType="LabEntity.Category" />
+          <AssociationSet Name="CategoryTrait" Association="LabEntity.CategoryTrait">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Trait" EntitySet="Trait" />
+          </AssociationSet>
+          <AssociationSet Name="FlyTrait" Association="LabEntity.FlyTrait">
+            <End Role="Fly" EntitySet="Fly" />
+            <End Role="Trait" EntitySet="Trait" />
+          </AssociationSet>
+          <EntitySet Name="LabUser" EntityType="LabEntity.LabUser" />
+          <EntitySet Name="UseInstance" EntityType="LabEntity.UseInstance" />
+          <AssociationSet Name="LabUserUseInstance" Association="LabEntity.LabUserUseInstance">
+            <End Role="LabUser" EntitySet="LabUser" />
+            <End Role="UseInstance" EntitySet="UseInstance" />
+          </AssociationSet>
+          <AssociationSet Name="UseInstanceModule" Association="LabEntity.UseInstanceModule">
+            <End Role="UseInstance" EntitySet="UseInstance" />
+            <End Role="Module" EntitySet="Module" />
+          </AssociationSet>
+          <AssociationSet Name="UseInstanceFly" Association="LabEntity.UseInstanceFly">
+            <End Role="UseInstance" EntitySet="UseInstance" />
+            <End Role="Fly" EntitySet="Fly" />
+          </AssociationSet>
+          <EntitySet Name="ImageSettings" EntityType="LabEntity.ImageSettings" />
+          <AssociationSet Name="TraitTrait" Association="LabEntity.TraitTrait">
+            <End Role="Trait" EntitySet="Trait" />
+            <End Role="Trait1" EntitySet="Trait" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Fly">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="LabEntity.GenderFly" FromRole="Fly" ToRole="Gender" />
+          <NavigationProperty Name="Module" Relationship="LabEntity.ModuleFly" FromRole="Fly" ToRole="Module" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Traits" Relationship="LabEntity.FlyTrait" FromRole="Fly" ToRole="Trait" />
+          <NavigationProperty Name="UseInstance" Relationship="LabEntity.UseInstanceFly" FromRole="Fly" ToRole="UseInstance" />
+          <Property Name="UseInstanceId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trait">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="IsDominant" Type="Boolean" Nullable="false" />
+          <Property Name="IsIncompleteDominant" Type="Boolean" Nullable="false" />
+          <Property Name="IsLethal" Type="Boolean" Nullable="false" />
+          <Property Name="ChromosomeNumber" Type="Byte" Nullable="false" />
+          <Property Name="Distance" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="LabEntity.CategoryTrait" FromRole="Trait" ToRole="Category" />
+          <NavigationProperty Name="Flies" Relationship="LabEntity.FlyTrait" FromRole="Trait" ToRole="Fly" />
+          <Property Name="IsHeterozygous" Type="Boolean" />
+          <Property Name="ImagePath" Nullable="false" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Mother" Relationship="LabEntity.TraitTrait" FromRole="Trait" ToRole="Trait1" />
+          <NavigationProperty Name="Father" Relationship="LabEntity.TraitTrait" FromRole="Trait1" ToRole="Trait" />
+          </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Flies" Relationship="LabEntity.GenderFly" FromRole="Gender" ToRole="Fly" />
+        </EntityType>
+        <Association Name="GenderFly">
+          <End Type="LabEntity.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="LabEntity.Fly" Role="Fly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fly">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Flies" Relationship="LabEntity.ModuleFly" FromRole="Module" ToRole="Fly" />
+          <Property Name="Call_id" Type="Int32" />
+          <NavigationProperty Name="UseInstances" Relationship="LabEntity.UseInstanceModule" FromRole="Module" ToRole="UseInstance" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="ModuleFly">
+          <End Type="LabEntity.Module" Role="Module" Multiplicity="1" />
+          <End Type="LabEntity.Fly" Role="Fly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fly">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Traits" Relationship="LabEntity.CategoryTrait" FromRole="Category" ToRole="Trait" />
+        </EntityType>
+        <Association Name="CategoryTrait">
+          <End Type="LabEntity.Category" Role="Category" Multiplicity="1" />
+          <End Type="LabEntity.Trait" Role="Trait" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trait">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FlyTrait">
+          <End Type="LabEntity.Fly" Role="Fly" Multiplicity="*" />
+          <End Type="LabEntity.Trait" Role="Trait" Multiplicity="*" />
+        </Association>
+        <EntityType Name="LabUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GID" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="UseInstances" Relationship="LabEntity.LabUserUseInstance" FromRole="LabUser" ToRole="UseInstance" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UseInstance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="LabUser" Relationship="LabEntity.LabUserUseInstance" FromRole="UseInstance" ToRole="LabUser" />
+          <Property Name="LabUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Module" Relationship="LabEntity.UseInstanceModule" FromRole="UseInstance" ToRole="Module" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="Stage" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Browser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Flies" Relationship="LabEntity.UseInstanceFly" FromRole="UseInstance" ToRole="Fly" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <Association Name="LabUserUseInstance">
+          <End Type="LabEntity.LabUser" Role="LabUser" Multiplicity="1" />
+          <End Type="LabEntity.UseInstance" Role="UseInstance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UseInstance">
+              <PropertyRef Name="LabUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UseInstanceModule">
+          <End Type="LabEntity.UseInstance" Role="UseInstance" Multiplicity="*" />
+          <End Type="LabEntity.Module" Role="Module" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UseInstance">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UseInstanceFly">
+          <End Type="LabEntity.UseInstance" Role="UseInstance" Multiplicity="1" />
+          <End Type="LabEntity.Fly" Role="Fly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UseInstance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fly">
+              <PropertyRef Name="UseInstanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ImageSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prefix" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FirstCat" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SecCat" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Suffix" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="TraitTrait">
+          <End Type="LabEntity.Trait" Role="Trait" Multiplicity="0..1" />
+          <End Type="LabEntity.Trait" Role="Trait1" Multiplicity="0..1" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LabEntityStoreContainer" CdmEntityContainer="LabEntityContainer">
+    <EntitySetMapping Name="Fly">
+      <EntityTypeMapping TypeName="IsTypeOf(LabEntity.Fly)">
+        <MappingFragment StoreEntitySet="Fly">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="UseInstanceId" ColumnName="UseInstanceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trait">
+      <EntityTypeMapping TypeName="IsTypeOf(LabEntity.Trait)">
+        <MappingFragment StoreEntitySet="Trait">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="IsDominant" ColumnName="IsDominant" />
+          <ScalarProperty Name="IsIncompleteDominant" ColumnName="IsIncompleteDominant" />
+          <ScalarProperty Name="IsLethal" ColumnName="IsLethal" />
+          <ScalarProperty Name="ChromosomeNumber" ColumnName="ChromosomeNumber" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="IsHeterozygous" ColumnName="IsHeterozygous" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gender">
+      <EntityTypeMapping TypeName="IsTypeOf(LabEntity.Gender)">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Module">
+      <EntityTypeMapping TypeName="IsTypeOf(LabEntity.Module)">
+        <MappingFragment StoreEntitySet="Module">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="Call_id" ColumnName="Call_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="IsTypeOf(LabEntity.Category)">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CatName" ColumnName="CatName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabUser">
+      <EntityTypeMapping TypeName="IsTypeOf(LabEntity.LabUser)">
+        <MappingFragment StoreEntitySet="LabUser">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GID" ColumnName="GID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UseInstance">
+      <EntityTypeMapping TypeName="IsTypeOf(LabEntity.UseInstance)">
+        <MappingFragment StoreEntitySet="UseInstance">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="LabUserId" ColumnName="LabUserId" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="Stage" ColumnName="Stage" />
+          <ScalarProperty Name="Browser" ColumnName="Browser" />
+          <ScalarProperty Name="OS" ColumnName="OS" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImageSettings">
+      <EntityTypeMapping TypeName="IsTypeOf(LabEntity.ImageSettings)">
+        <MappingFragment StoreEntitySet="ImageSettings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+          <ScalarProperty Name="FirstCat" ColumnName="FirstCat" />
+          <ScalarProperty Name="SecCat" ColumnName="SecCat" />
+          <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FlyTrait" TypeName="LabEntity.FlyTrait" StoreEntitySet="FlyTrait">
+      <EndProperty Name="Fly">
+        <ScalarProperty Name="Id" ColumnName="Flies_Id" />
+      </EndProperty>
+      <EndProperty Name="Trait">
+        <ScalarProperty Name="Id" ColumnName="Traits_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TraitTrait" TypeName="LabEntity.TraitTrait" StoreEntitySet="Trait">
+      <EndProperty Name="Trait">
+        <ScalarProperty Name="Id" ColumnName="Father_Id" />
+      </EndProperty>
+      <EndProperty Name="Trait1">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Father_Id" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

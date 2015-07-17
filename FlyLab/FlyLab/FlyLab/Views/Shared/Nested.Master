@@ -1,0 +1,116 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" MasterPageFile="~/Views/Site.master" %>
+
+<asp:Content ContentPlaceHolderID="title" ID="title1" runat="server">
+    Fly Lab
+    <asp:ContentPlaceHolder ID="title" runat="server">
+        <%-- Auburn University --%>
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="head" ID="head1" runat="server">
+    <link href="../../Content/alertify/alertify.core.css" rel="stylesheet"/>
+    <link href="../../Content/alertify/alertify.default.css" rel="stylesheet"/>
+    <script src="../../Scripts/Alertify/alertify.js"></script>
+    <script src="../../Scripts/Utilities/cookies.js"></script>
+    <script src="../../Scripts/knockout-3.3.0.js"></script>
+    <script src="../../Scripts/Utilities/arrayUtils.js"></script>
+    <script src="../../Scripts/Utilities/math.min.js"></script>
+
+    <style>
+        #footercenter {
+            border-style: solid;
+            border-width: 0 1px;
+            border-color:#4e75a6;
+        }
+        .btn, .panel, .form-control, .alert {
+            border-radius: 0;
+        }
+        a {
+            border-radius: 0 !important;
+        }
+        textarea {
+            resize: none;
+        }
+    </style>
+    <script>
+        window.DEBUG = <%= HttpContext.Current.IsDebuggingEnabled.ToString().ToLower() %>;
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="sidebar" ID="sidebar1" runat="server">
+    <asp:ContentPlaceHolder ID="sidebar" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="breadcrumb" ID="breadcrumb1" runat="server">
+    <%if (CWSToolkit.AuthUser.IsAppAdmin())
+      { %>
+          <div style="text-align:right"><a href="/FlyLab/Admin">Admin Home</a></div>
+    <%} %>
+    <asp:ContentPlaceHolder ID="breadcrumb" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="footer" ID="footer1" runat="server">
+    <section>
+    </section>
+    <section id="footercenter">
+        <p class="social"><a href="http://www.facebook.com/auburnu/" class="facebook social" target="_blank"></a><a href="http://itunes.auburn.edu/" class="itunes social" target="_blank"></a><a href="http://twitter.com/auburnu/" class="twitter social" target="_blank"></a><a href="https://www.google.com/+AuburnUniversity/" class="google-plus social" target="_blank"></a><a href="http://www.youtube.com/AuburnUniversity/" class="you-tube social" target="_blank"></a><a href="http://family.auburn.edu/" class="au-family social" target="_blank"></a><a href="http://www.secacademicnetwork.com/" class="sec social" target="_blank"></a></p>
+        <p class="social-details" style="background-position: 0px -177px;"></p>
+    </section>
+    <section>
+    </section>
+    <asp:ContentPlaceHolder ID="footer" runat="server">
+        <%--
+	        
+        --%>
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="navbar" ID="menu1" runat="server">
+    <li><a href="/FlyLab">Home</a></li>
+    <%: Html.Action("NavBar", "Home") %>
+    <asp:ContentPlaceHolder ID="navbar" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="mainHeading" ID="mainHeading1" runat="server">
+    Auburn University Fly Lab
+    <asp:ContentPlaceHolder ID="mainHeading" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="subHeading" ID="subHeading1" runat="server">
+    <asp:ContentPlaceHolder ID="subHeading" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="body" ID="body1" runat="server">
+    <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="subFooter" ID="subFooter1" runat="server">
+    <div class="subfooter" role="contentinfo">
+        <p><span>This application was developed by <a href="https://cws.auburn.edu/oit/cws"><strong>Campus Web Solutions</strong></a>.</span></p>
+        <p>
+            <span>
+                <% if (CWSToolkit.AuthUser.IsLoggedIn())
+                   { %>
+                <a href="https://cws.auburn.edu/shared/auth/logout?r=<%= Uri.EscapeDataString(Request.Url.OriginalString.Replace(" localhost", "debug.auburn.edu" )) %>&amp;i=<%= ConfigurationManager.AppSettings["AppID"] %>" title="Logout <%= CWSToolkit.AuthUser.GetUsername() %>">Logout</a> |
+	                <% }
+                   else
+                   { %>
+                <a href="https://cws.auburn.edu/shared/auth?r=<%= Uri.EscapeDataString(Request.Url.OriginalString.Replace(" localhost", "debug.auburn.edu" )) %>&amp;i=<%= ConfigurationManager.AppSettings["AppID"] %>">Login</a> |
+	                <% } %>
+            </span>
+            <span><a href="http://www.auburn.edu/websitefeedback/">Website Feedback</a> |</span> <span><a href="http://www.auburn.edu/privacy/">Privacy</a> |</span> <span><a href="http://www.auburn.edu/copyright">Copyright &copy;
+	            <script type="text/javascript">date = new Date(); document.write(date.getFullYear());</script>
+            </a></span>
+        </p>
+    </div>
+    <asp:ContentPlaceHolder ID="subFooter" runat="server">
+        <%--
+        --%>
+    </asp:ContentPlaceHolder>
+</asp:Content>
